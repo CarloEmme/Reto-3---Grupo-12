@@ -24,13 +24,17 @@
         .biblio-list p {
             margin-bottom: 0.75rem;
             text-indent: -1.5rem;
-            padding-left: 1.5rem;
-            transition: all 0.2s ease;
+            padding: 0.25rem 0.25rem 0.25rem 1.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 0.25rem;
+            border-left: 3px solid transparent;
         }
         .biblio-list p:hover {
             color: #1e40af;
             background-color: #eff6ff;
-            border-radius: 0.25rem;
+            padding: 0.75rem 0.5rem 0.75rem 2.25rem;
+            border-left: 3px solid #3b82f6;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
         /* New Animation Styles */
         @keyframes fadeIn {
@@ -71,17 +75,21 @@
         <!-- Interactive Tabs Navigation -->
         <div class="mb-8 border-b border-gray-200 sticky top-0 bg-gray-50 z-20 pt-2">
             <nav class="-mb-px flex flex-wrap space-x-1 sm:space-x-8" aria-label="Tabs">
-                <button onclick="openTab(event, 'tab-contexto')" class="tab-btn active w-full sm:w-auto text-left sm:text-center whitespace-nowrap py-4 px-2 sm:px-1 border-b-2 font-medium text-sm sm:text-base border-blue-500 text-blue-600 transition-colors focus:outline-none">
-                    1. Contexto y Estructura
+                <button id="btn-contexto" onclick="openTab(event, 'tab-contexto')" class="tab-btn active w-full sm:w-auto text-left sm:text-center whitespace-nowrap py-4 px-2 sm:px-1 border-b-2 font-medium text-sm sm:text-base border-blue-500 text-blue-600 transition-colors focus:outline-none flex items-center justify-between sm:justify-center gap-2">
+                    <span>1. Contexto y Estructura</span>
+                    <svg id="check-contexto" class="w-5 h-5 text-green-500 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                 </button>
-                <button onclick="openTab(event, 'tab-modelo')" class="tab-btn w-full sm:w-auto text-left sm:text-center whitespace-nowrap py-4 px-2 sm:px-1 border-b-2 font-medium text-sm sm:text-base border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-colors focus:outline-none">
-                    2. Modelo Tecnopedagógico
+                <button id="btn-modelo" onclick="openTab(event, 'tab-modelo')" class="tab-btn w-full sm:w-auto text-left sm:text-center whitespace-nowrap py-4 px-2 sm:px-1 border-b-2 font-medium text-sm sm:text-base border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-colors focus:outline-none flex items-center justify-between sm:justify-center gap-2">
+                    <span>2. Modelo Tecnopedagógico</span>
+                    <svg id="check-modelo" class="w-5 h-5 text-green-500 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                 </button>
-                <button onclick="openTab(event, 'tab-diseno')" class="tab-btn w-full sm:w-auto text-left sm:text-center whitespace-nowrap py-4 px-2 sm:px-1 border-b-2 font-medium text-sm sm:text-base border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-colors focus:outline-none">
-                    3. Diseño (ADDIE)
+                <button id="btn-diseno" onclick="openTab(event, 'tab-diseno')" class="tab-btn w-full sm:w-auto text-left sm:text-center whitespace-nowrap py-4 px-2 sm:px-1 border-b-2 font-medium text-sm sm:text-base border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-colors focus:outline-none flex items-center justify-between sm:justify-center gap-2">
+                    <span>3. Diseño (ADDIE)</span>
+                    <svg id="check-diseno" class="w-5 h-5 text-green-500 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                 </button>
-                <button onclick="openTab(event, 'tab-bibliografia')" class="tab-btn w-full sm:w-auto text-left sm:text-center whitespace-nowrap py-4 px-2 sm:px-1 border-b-2 font-medium text-sm sm:text-base border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-colors focus:outline-none">
-                    Bibliografía
+                <button id="btn-bibliografia" onclick="openTab(event, 'tab-bibliografia')" class="tab-btn w-full sm:w-auto text-left sm:text-center whitespace-nowrap py-4 px-2 sm:px-1 border-b-2 font-medium text-sm sm:text-base border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-colors focus:outline-none flex items-center justify-between sm:justify-center gap-2">
+                    <span>Bibliografía</span>
+                    <svg id="check-bibliografia" class="w-5 h-5 text-green-500 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                 </button>
             </nav>
         </div>
@@ -172,6 +180,14 @@
                 
                 <p>Con esta secuencia se podrá avanzar desde la comprensión conceptual hasta la aplicación práctica, y también alineándose con un enfoque de aprendizaje progresivo y significativo.</p>
             </section>
+
+            <!-- Botón Siguiente -->
+            <div class="mt-8 flex justify-end">
+                <button onclick="goToNextTab('tab-modelo')" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all transform hover:-translate-y-1 flex items-center gap-2">
+                    Siguiente: Modelo Tecnopedagógico
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </button>
+            </div>
         </div>
 
         <!-- TAB 2: Modelo Tecnopedagógico -->
@@ -226,18 +242,43 @@
                 </div>
                 <p>A partir de este análisis comparativo, se selecciona el modelo ADDIE por su capacidad de estructurar de forma coherente todo el proceso formativo, adaptándose a contextos de formación online y permitiendo integrar otros enfoques constructivistas como el modelo EAC.</p>
 
-                <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-800">2.2. Justificación de la elección del modelo ADDIE </h3>
-                <p>En la documentación académica consultada, hemos constatado que, históricamente, los modelos de Diseño Instruccional (DI) estaban basados en teorías conductistas, pero la evolución natural de la disciplina, impulsada por la integración de las TIC, ha dado lugar al concepto de Diseño Tecnopedagógico (DTP) (Coll, Onrubia y Mauri, 2007) que hace que el diseño tecnológico resulte prácticamente indisociable del diseño pedagógico.</p>
-                <p>Se elige ADDIE porque es sistémico, versátil y proporciona un marco conceptual genérico ("paraguas") que sirve para ilustrar la interconexión de todo el proceso de desarrollo de las intervenciones educativas (Molenda, 2003). ADDIE permite un proceso interactivo donde el producto final de cada fase es el producto inicial de la siguiente y da la continuidad y retroalimentación que exige el objetivo final del curso.</p>
-                <p>Para asegurar que ADDIE no se aplique de una forma mecánica o prescriptiva, se fusiona con el modelo EAC (Entornos de Aprendizaje Constructivista). El modelo EAC de Jonassen (1999) enfatiza el papel del aprendiz en la construcción del conocimiento mediante el enfoque de "aprender haciendo". La meta es diseñar entornos que comprometan al alumno en la elaboración del conocimiento, utilizando un problema, pregunta o proyecto como núcleo central. De este modo, la tecnología no es un fin, sino una herramienta cognitiva y de colaboración al servicio del constructivismo y para nuestro alumnado objetivo, que son a su vez docentes de secundaria, se crean las sinergias necesarias durante la acción formativa para conseguir el objetivo final, que es aprender a crear e-actividades más participativas utilizando las nuevas tecnologías aprendidas.</p>
+                <div class="space-y-6 mt-8">
+                    <div class="interactive-card bg-white p-6 rounded-xl shadow-sm border border-indigo-100 hover:border-indigo-300">
+                        <h3 class="text-xl font-semibold mb-3 text-indigo-800 flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            2.2. Justificación de la elección del modelo ADDIE
+                        </h3>
+                        <p class="mb-3 text-gray-700">En la documentación académica consultada, hemos constatado que, históricamente, los modelos de Diseño Instruccional (DI) estaban basados en teorías conductistas, pero la evolución natural de la disciplina, impulsada por la integración de las TIC, ha dado lugar al concepto de Diseño Tecnopedagógico (DTP) (Coll, Onrubia y Mauri, 2007) que hace que el diseño tecnológico resulte prácticamente indisociable del diseño pedagógico.</p>
+                        <p class="mb-3 text-gray-700">Se elige ADDIE porque es sistémico, versátil y proporciona un marco conceptual genérico ("paraguas") que sirve para ilustrar la interconexión de todo el proceso de desarrollo de las intervenciones educativas (Molenda, 2003). ADDIE permite un proceso interactivo donde el producto final de cada fase es el producto inicial de la siguiente y da la continuidad y retroalimentación que exige el objetivo final del curso.</p>
+                        <p class="m-0 text-gray-700">Para asegurar que ADDIE no se aplique de una forma mecánica o prescriptiva, se fusiona con el modelo EAC (Entornos de Aprendizaje Constructivista). El modelo EAC de Jonassen (1999) enfatiza el papel del aprendiz en la construcción del conocimiento mediante el enfoque de "aprender haciendo". La meta es diseñar entornos que comprometan al alumno en la elaboración del conocimiento, utilizando un problema, pregunta o proyecto como núcleo central. De este modo, la tecnología no es un fin, sino una herramienta cognitiva y de colaboración al servicio del constructivismo y para nuestro alumnado objetivo, que son a su vez docentes de secundaria, se crean las sinergias necesarias durante la acción formativa para conseguir el objetivo final, que es aprender a crear e-actividades más participativas utilizando las nuevas tecnologías aprendidas.</p>
+                    </div>
 
-                <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-800">2.3. Proceso de descarte de los otros modelos</h3>
-                <p>Otros modelos que hemos considerado por su adecuación media al contexto (pero descartados finalmente) son: el modelo ASSURE, aunque útil para el diseño de sesiones concretas, presenta limitaciones en la planificación global de programas formativos completos tan específicos como en nuestro. Por su parte, el modelo SOLE prioriza la autonomía del alumno (docentes adultos), pero no garantiza el acompañamiento necesario en procesos formativos estructurados. Finalmente, el modelo 4C/ID, aunque altamente eficaz para el desarrollo de competencias complejas, implica un nivel de complejidad en su implementación que no se ajusta a los objetivos y recursos disponibles en esta propuesta.</p>
+                    <div class="interactive-card bg-white p-6 rounded-xl shadow-sm border border-indigo-100 hover:border-indigo-300">
+                        <h3 class="text-xl font-semibold mb-3 text-indigo-800 flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            2.3. Proceso de descarte de los otros modelos
+                        </h3>
+                        <p class="m-0 text-gray-700">Otros modelos que hemos considerado por su adecuación media al contexto (pero descartados finalmente) son: el modelo ASSURE, aunque útil para el diseño de sesiones concretas, presenta limitaciones en la planificación global de programas formativos completos tan específicos como en nuestro. Por su parte, el modelo SOLE prioriza la autonomía del alumno (docentes adultos), pero no garantiza el acompañamiento necesario en procesos formativos estructurados. Finalmente, el modelo 4C/ID, aunque altamente eficaz para el desarrollo de competencias complejas, implica un nivel de complejidad en su implementación que no se ajusta a los objetivos y recursos disponibles en esta propuesta.</p>
+                    </div>
 
-                <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-800">2.4. Ubicación en la cuadrícula de paradigmas pedagógicos de  Coomey y Stephenson (2001)</h3>
-                <p>La propuesta formativa se sitúa en el cuadrante Noreste (NE) caracterizado por un alto grado de control por parte del alumno y una fuerte orientación a la actividad, lo que implica un enfoque centrado en el aprendizaje activo y autónomo.</p>
-                <p>En este modelo, el estudiante asume un rol protagonista en la construcción del conocimiento, mientras que el docente actúa como facilitador del proceso. Esta elección se justifica por la necesidad de promover competencias aplicadas y transferibles, favoreciendo la toma de decisiones, la resolución de problemas y la reflexión crítica en contextos reales.</p>
+                    <div class="interactive-card bg-white p-6 rounded-xl shadow-sm border border-indigo-100 hover:border-indigo-300">
+                        <h3 class="text-xl font-semibold mb-3 text-indigo-800 flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path></svg>
+                            2.4. Ubicación en la cuadrícula de paradigmas pedagógicos de Coomey y Stephenson (2001)
+                        </h3>
+                        <p class="mb-3 text-gray-700">La propuesta formativa se sitúa en el cuadrante Noreste (NE) caracterizado por un alto grado de control por parte del alumno y una fuerte orientación a la actividad, lo que implica un enfoque centrado en el aprendizaje activo y autónomo.</p>
+                        <p class="m-0 text-gray-700">En este modelo, el estudiante asume un rol protagonista en la construcción del conocimiento, mientras que el docente actúa como facilitador del proceso. Esta elección se justifica por la necesidad de promover competencias aplicadas y transferibles, favoreciendo la toma de decisiones, la resolución de problemas y la reflexión crítica en contextos reales.</p>
+                    </div>
+                </div>
             </section>
+
+            <!-- Botón Siguiente -->
+            <div class="mt-8 flex justify-end">
+                <button onclick="goToNextTab('tab-diseno')" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all transform hover:-translate-y-1 flex items-center gap-2">
+                    Siguiente: Diseño (ADDIE)
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </button>
+            </div>
         </div>
 
         <!-- TAB 3: Diseño (ADDIE) -->
@@ -348,6 +389,14 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Botón Siguiente -->
+            <div class="mt-8 flex justify-end">
+                <button onclick="goToNextTab('tab-bibliografia')" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all transform hover:-translate-y-1 flex items-center gap-2">
+                    Siguiente: Bibliografía
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </button>
+            </div>
         </div>
 
         <!-- TAB 4: Bibliografía -->
@@ -355,33 +404,40 @@
             <section class="mb-12">
                 <h2 class="text-3xl font-bold mb-6 text-gray-900">Bibliografía</h2>
                 <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-                    <p class="text-sm text-gray-500 mb-4 italic">Pasa el cursor por encima de cada referencia para resaltarla.</p>
                     <div class="biblio-list text-sm text-gray-600">
-                        <p class="p-1 cursor-default">Ashton, S., Roberts, T., y Teles, L. (1999). Investigation the role of the instructor in collaborative online environments. Sesión de póster presentada en la Conferencia CSCL 99, Stanford University, CA.</p>
-                        <p class="p-1 cursor-default">Bonk, C. J., Reaves Kirkley, J., Hara, N., y Paz Dennen, V. (2001). Finding the instructor in post-secondary online learning: pedagogical, social, managerial, and technological locations. En J. Stephenson (Ed.), Teaching and Learning Online: Pedagogies for New Technologies. Londres: Kogan Page.</p>
-                        <p class="p-1 cursor-default">Brown, H. D. (2004). Language Assessment: Principles and Classroom Practices. Nueva York: Longman.</p>
-                        <p class="p-1 cursor-default">Bruner, J. S. (1973). Beyond the information given: Studies in the psychology of knowing. Nueva York: Norton.</p>
-                        <p class="p-1 cursor-default">Cabrera, N., y Fernández-Ferrer, M. (2020). Claves para una evaluación en línea. En A. Sangrà (Coord.), Decálogo para la mejora de la docencia online. Propuestas para educar en contextos presenciales discontinuos (pp. 63-80). Barcelona: Editorial UOC.</p>
-                        <p class="p-1 cursor-default">Coll, C., Onrubia, J., y Mauri, T. (2007). Los entornos virtuales de aprendizaje basados en el análisis de casos y la resolución de problemas. España: Morata.</p>
-                        <p class="p-1 cursor-default">Coomey, M., y Stephenson, J. (2001). Online learning: it is all about dialogue, involvement, support and control-according to research. En J. Stephenson (Ed.), Teaching and Learning Online: Pedagogies for New Technologies. Londres: Kogan Page.</p>
-                        <p class="p-1 cursor-default">Díaz, F., y Barroso, R. (2014). Diseño y Validación de una propuesta de evaluación auténtica de competencias en un programa de formación de docentes de educación básica en México. Perspectiva Educacional: Formación de profesores, 53(1), 36-56.</p>
-                        <p class="p-1 cursor-default">Dick, W., Carey, L., y Carey, J. (2001). The systematic design of instruction (5th ed.). Nueva York: Longman.</p>
-                        <p class="p-1 cursor-default">Guasch, T., y Espasa, A. (2020). Menos es más: menos correcciones y más feedback para aprender. En A. Sangrà (Coord.), Decálogo para la mejora de la docencia online. Propuestas para educar en contextos presenciales discontinuos (pp. 151-168). Barcelona: Editorial UOC.</p>
-                        <p class="p-1 cursor-default">Gustafson, K. L., y Branch, R. M. (2002). Survey of instructional development models (4th ed.). Syracuse, NY: ERIC Clearinghouse on Information & Technology.</p>
-                        <p class="p-1 cursor-default">Heinich, R., Molenda, M., Russell, J., y Smaldino, S. (1999). Instructional media and technologies for learning (6th ed.). Upper Saddle River, NJ: Merrill, Prentice-Hall.</p>
-                        <p class="p-1 cursor-default">Hirumi, A. (2002). Student-Centered, Technology-Rich Learning Environments (SCenTRLE): Operationalizing Constructivist Approaches to Teaching and Learning. Journal of Technology and Teacher Education, 10(4), 497-537.</p>
-                        <p class="p-1 cursor-default">Jonassen, D. H. (1999). Designing constructivist learning environments. En C. M. Reigeluth (Ed.), Instructional design theories and models: A new paradigm of instructional theory (Vol. 2, pp. 215-239). Mahwah, NJ: Lawrence Erlbaum Associates.</p>
-                        <p class="p-1 cursor-default">Maina, M. (2020). E-actividades para un aprendizaje activo. En A. Sangrà (Coord.), Decálogo para la mejora de la docencia online. Propuestas para educar en contextos presenciales discontinuos (pp. 81-98). Barcelona: Editorial UOC.</p>
-                        <p class="p-1 cursor-default">Mason, R. (1991). Moderating educational computer conferencing. DEOSNEWS, 1(19), 1-11.</p>
-                        <p class="p-1 cursor-default">Miles, D. H. (2003). The 30-Second Encyclopedia of Learning and Performance: A Trainer’s Guide to Theory, Terminology, and Practice. Nueva York: AMACOM.</p>
-                        <p class="p-1 cursor-default">Molenda, M. (2003). In search of the elusive ADDIE model. Performance Improvement, 42(5), 34-36.</p>
-                        <p class="p-1 cursor-default">Piskurich, G. M. (2000). Rapid instructional design: Learning ID fast and right. San Francisco: Pfeiffer.</p>
-                        <p class="p-1 cursor-default">Salmon, G. (2000). E-moderating: the key to teaching and learning online. Londres: Routledge Falmer.</p>
-                        <p class="p-1 cursor-default">Sangrà, A. (Coord.) (2020). Decálogo para la mejora de la docencia online. Propuestas para educar en contextos presenciales discontinuos. Barcelona: Editorial UOC.</p>
-                        <p class="p-1 cursor-default">Tripp, S. D., y Bichelmeyer, B. (1990). Rapid prototyping: An alternative instructional design strategy. Educational Technology Research and Development, 38(1), 31-44.</p>
+                        <p class="cursor-default">Ashton, S., Roberts, T., y Teles, L. (1999). Investigation the role of the instructor in collaborative online environments. Sesión de póster presentada en la Conferencia CSCL 99, Stanford University, CA.</p>
+                        <p class="cursor-default">Bonk, C. J., Reaves Kirkley, J., Hara, N., y Paz Dennen, V. (2001). Finding the instructor in post-secondary online learning: pedagogical, social, managerial, and technological locations. En J. Stephenson (Ed.), Teaching and Learning Online: Pedagogies for New Technologies. Londres: Kogan Page.</p>
+                        <p class="cursor-default">Brown, H. D. (2004). Language Assessment: Principles and Classroom Practices. Nueva York: Longman.</p>
+                        <p class="cursor-default">Bruner, J. S. (1973). Beyond the information given: Studies in the psychology of knowing. Nueva York: Norton.</p>
+                        <p class="cursor-default">Cabrera, N., y Fernández-Ferrer, M. (2020). Claves para una evaluación en línea. En A. Sangrà (Coord.), Decálogo para la mejora de la docencia online. Propuestas para educar en contextos presenciales discontinuos (pp. 63-80). Barcelona: Editorial UOC.</p>
+                        <p class="cursor-default">Coll, C., Onrubia, J., y Mauri, T. (2007). Los entornos virtuales de aprendizaje basados en el análisis de casos y la resolución de problemas. España: Morata.</p>
+                        <p class="cursor-default">Coomey, M., y Stephenson, J. (2001). Online learning: it is all about dialogue, involvement, support and control-according to research. En J. Stephenson (Ed.), Teaching and Learning Online: Pedagogies for New Technologies. Londres: Kogan Page.</p>
+                        <p class="cursor-default">Díaz, F., y Barroso, R. (2014). Diseño y Validación de una propuesta de evaluación auténtica de competencias en un programa de formación de docentes de educación básica en México. Perspectiva Educacional: Formación de profesores, 53(1), 36-56.</p>
+                        <p class="cursor-default">Dick, W., Carey, L., y Carey, J. (2001). The systematic design of instruction (5th ed.). Nueva York: Longman.</p>
+                        <p class="cursor-default">Guasch, T., y Espasa, A. (2020). Menos es más: menos correcciones y más feedback para aprender. En A. Sangrà (Coord.), Decálogo para la mejora de la docencia online. Propuestas para educar en contextos presenciales discontinuos (pp. 151-168). Barcelona: Editorial UOC.</p>
+                        <p class="cursor-default">Gustafson, K. L., y Branch, R. M. (2002). Survey of instructional development models (4th ed.). Syracuse, NY: ERIC Clearinghouse on Information & Technology.</p>
+                        <p class="cursor-default">Heinich, R., Molenda, M., Russell, J., y Smaldino, S. (1999). Instructional media and technologies for learning (6th ed.). Upper Saddle River, NJ: Merrill, Prentice-Hall.</p>
+                        <p class="cursor-default">Hirumi, A. (2002). Student-Centered, Technology-Rich Learning Environments (SCenTRLE): Operationalizing Constructivist Approaches to Teaching and Learning. Journal of Technology and Teacher Education, 10(4), 497-537.</p>
+                        <p class="cursor-default">Jonassen, D. H. (1999). Designing constructivist learning environments. En C. M. Reigeluth (Ed.), Instructional design theories and models: A new paradigm of instructional theory (Vol. 2, pp. 215-239). Mahwah, NJ: Lawrence Erlbaum Associates.</p>
+                        <p class="cursor-default">Maina, M. (2020). E-actividades para un aprendizaje activo. En A. Sangrà (Coord.), Decálogo para la mejora de la docencia online. Propuestas para educar en contextos presenciales discontinuos (pp. 81-98). Barcelona: Editorial UOC.</p>
+                        <p class="cursor-default">Mason, R. (1991). Moderating educational computer conferencing. DEOSNEWS, 1(19), 1-11.</p>
+                        <p class="cursor-default">Miles, D. H. (2003). The 30-Second Encyclopedia of Learning and Performance: A Trainer’s Guide to Theory, Terminology, and Practice. Nueva York: AMACOM.</p>
+                        <p class="cursor-default">Molenda, M. (2003). In search of the elusive ADDIE model. Performance Improvement, 42(5), 34-36.</p>
+                        <p class="cursor-default">Piskurich, G. M. (2000). Rapid instructional design: Learning ID fast and right. San Francisco: Pfeiffer.</p>
+                        <p class="cursor-default">Salmon, G. (2000). E-moderating: the key to teaching and learning online. Londres: Routledge Falmer.</p>
+                        <p class="cursor-default">Sangrà, A. (Coord.) (2020). Decálogo para la mejora de la docencia online. Propuestas para educar en contextos presenciales discontinuos. Barcelona: Editorial UOC.</p>
+                        <p class="cursor-default">Tripp, S. D., y Bichelmeyer, B. (1990). Rapid prototyping: An alternative instructional design strategy. Educational Technology Research and Development, 38(1), 31-44.</p>
                     </div>
                 </div>
             </section>
+
+            <!-- Botón Volver al Inicio -->
+            <div class="mt-8 flex justify-end">
+                <button onclick="goToNextTab('tab-contexto')" class="bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all transform hover:-translate-y-1 flex items-center gap-2">
+                    Volver al Inicio
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+                </button>
+            </div>
         </div>
 
     </main>
@@ -389,14 +445,22 @@
     <!-- Footer -->
     <footer class="bg-gray-900 text-gray-400 py-8 text-center text-sm">
         <div class="max-w-4xl mx-auto px-6">
-            <p>Documento de diseño instruccional del curso "Ctrl+Alt+Teach". Todos los derechos reservados.</p>
         </div>
     </footer>
 
     <!-- Interactivity Scripts -->
     <script>
+        let currentActiveTab = 'tab-contexto';
+
         // Tab switching logic
         function openTab(evt, tabName) {
+            // Mark the tab we are leaving as "checked"
+            if (currentActiveTab && currentActiveTab !== tabName) {
+                const checkIcon = document.getElementById('check-' + currentActiveTab.replace('tab-', ''));
+                if (checkIcon) checkIcon.classList.remove('hidden');
+            }
+            currentActiveTab = tabName;
+
             // Hide all tab contents
             const tabContents = document.getElementsByClassName("tab-content");
             for (let i = 0; i < tabContents.length; i++) {
@@ -414,8 +478,31 @@
             // Show current tab and set active classes
             document.getElementById(tabName).classList.remove("hidden");
             document.getElementById(tabName).classList.add("block", "animate-fade-in");
-            evt.currentTarget.classList.remove("border-transparent", "text-gray-500");
-            evt.currentTarget.classList.add("border-blue-500", "text-blue-600", "active");
+            
+            const targetBtn = evt ? evt.currentTarget : document.getElementById('btn-' + tabName.replace('tab-', ''));
+            if(targetBtn) {
+                targetBtn.classList.remove("border-transparent", "text-gray-500");
+                targetBtn.classList.add("border-blue-500", "text-blue-600", "active");
+            }
+        }
+
+        // Navigate to the next tab from the bottom buttons
+        function goToNextTab(nextTabId) {
+            const nextBtn = document.getElementById('btn-' + nextTabId.replace('tab-', ''));
+            if(nextBtn) {
+                nextBtn.click(); // Triggers the openTab logic
+                
+                // Let the DOM update heights with the new tab before scrolling
+                setTimeout(() => {
+                    const tabsMenu = document.querySelector('.sticky');
+                    const offsetPosition = tabsMenu.getBoundingClientRect().top + window.scrollY;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }, 50);
+            }
         }
 
         // Accordion toggle logic
