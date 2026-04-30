@@ -494,11 +494,8 @@
                 
                 // Let the DOM update heights with the new tab before scrolling
                 setTimeout(() => {
-                    const tabsMenu = document.querySelector('.sticky');
-                    const offsetPosition = tabsMenu.getBoundingClientRect().top + window.scrollY;
-                    
                     window.scrollTo({
-                        top: offsetPosition,
+                        top: 0,
                         behavior: 'smooth'
                     });
                 }, 50);
