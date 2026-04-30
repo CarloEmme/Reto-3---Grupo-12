@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -25,6 +25,12 @@
             margin-bottom: 0.75rem;
             text-indent: -1.5rem;
             padding-left: 1.5rem;
+            transition: all 0.2s ease;
+        }
+        .biblio-list p:hover {
+            color: #1e40af;
+            background-color: #eff6ff;
+            border-radius: 0.25rem;
         }
         /* New Animation Styles */
         @keyframes fadeIn {
@@ -37,88 +43,94 @@
         .accordion-icon {
             transition: transform 0.3s ease;
         }
+        /* Interactive Card Hover */
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-color: #cbd5e1;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased selection:bg-blue-200 selection:text-blue-900">
 
-
     <!-- Header Section -->
-    <header class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white py-16 px-6 md:px-12 mb-10 shadow-lg">
-        <div class="max-w-4xl mx-auto">
+    <header class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white py-16 px-6 md:px-12 mb-10 shadow-lg relative overflow-hidden">
+        <div class="absolute inset-0 bg-white opacity-5 pattern-grid-lg"></div>
+        <div class="max-w-4xl mx-auto relative z-10">
             <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">Ctrl+Alt+Teach: <span class="text-blue-200">Reinicia tu Forma de Enseñar</span></h1>
             <p class="text-xl text-blue-100 font-light">Diseño Tecnopedagógico para Profesores de Secundaria</p>
         </div>
     </header>
 
-
     <!-- Main Content Container -->
     <main class="max-w-4xl mx-auto px-6 md:px-12 pb-20 content-section">
         
         <!-- Interactive Tabs Navigation -->
-        <div class="mb-8 border-b border-gray-200">
+        <div class="mb-8 border-b border-gray-200 sticky top-0 bg-gray-50 z-20 pt-2">
             <nav class="-mb-px flex flex-wrap space-x-1 sm:space-x-8" aria-label="Tabs">
-                <button onclick="openTab(event, 'tab-contexto')" class="tab-btn active w-full sm:w-auto text-left sm:text-center whitespace-nowrap py-4 px-2 sm:px-1 border-b-2 font-medium text-sm sm:text-base border-blue-500 text-blue-600 transition-colors">
+                <button onclick="openTab(event, 'tab-contexto')" class="tab-btn active w-full sm:w-auto text-left sm:text-center whitespace-nowrap py-4 px-2 sm:px-1 border-b-2 font-medium text-sm sm:text-base border-blue-500 text-blue-600 transition-colors focus:outline-none">
                     1. Contexto y Estructura
                 </button>
-                <button onclick="openTab(event, 'tab-modelo')" class="tab-btn w-full sm:w-auto text-left sm:text-center whitespace-nowrap py-4 px-2 sm:px-1 border-b-2 font-medium text-sm sm:text-base border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-colors">
+                <button onclick="openTab(event, 'tab-modelo')" class="tab-btn w-full sm:w-auto text-left sm:text-center whitespace-nowrap py-4 px-2 sm:px-1 border-b-2 font-medium text-sm sm:text-base border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-colors focus:outline-none">
                     2. Modelo Tecnopedagógico
                 </button>
-                <button onclick="openTab(event, 'tab-diseno')" class="tab-btn w-full sm:w-auto text-left sm:text-center whitespace-nowrap py-4 px-2 sm:px-1 border-b-2 font-medium text-sm sm:text-base border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-colors">
+                <button onclick="openTab(event, 'tab-diseno')" class="tab-btn w-full sm:w-auto text-left sm:text-center whitespace-nowrap py-4 px-2 sm:px-1 border-b-2 font-medium text-sm sm:text-base border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-colors focus:outline-none">
                     3. Diseño (ADDIE)
                 </button>
-                <button onclick="openTab(event, 'tab-bibliografia')" class="tab-btn w-full sm:w-auto text-left sm:text-center whitespace-nowrap py-4 px-2 sm:px-1 border-b-2 font-medium text-sm sm:text-base border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-colors">
+                <button onclick="openTab(event, 'tab-bibliografia')" class="tab-btn w-full sm:w-auto text-left sm:text-center whitespace-nowrap py-4 px-2 sm:px-1 border-b-2 font-medium text-sm sm:text-base border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-colors focus:outline-none">
                     Bibliografía
                 </button>
             </nav>
         </div>
 
-
         <!-- TAB 1: Contexto y Estructura -->
         <div id="tab-contexto" class="tab-content block animate-fade-in">
             <!-- Ficha Técnica -->
-            <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 mb-12 relative overflow-hidden">
+            <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 mb-12 relative overflow-hidden interactive-card">
                 <div class="absolute top-0 left-0 w-2 h-full bg-blue-500"></div>
                 <h2 class="text-2xl font-bold mb-6 text-blue-800 border-b pb-2 border-gray-100">Ficha técnica</h2>
                 <p class="mb-4 text-gray-600">Esta acción formativa se estructura como un curso de formación continua en modalidad e-learning dirigido a profesores de educación secundaria (en activo).</p>
                 <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
-                    <li class="flex items-start">
+                    <li class="flex items-start p-2 hover:bg-gray-50 rounded-lg transition-colors">
                         <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         <span><strong>Duración total:</strong> 40 horas</span>
                     </li>
-                    <li class="flex items-start">
+                    <li class="flex items-start p-2 hover:bg-gray-50 rounded-lg transition-colors">
                         <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                         <span><strong>Temporalización:</strong> 4 semanas (10 horas semanales)</span>
                     </li>
-                    <li class="flex items-start">
+                    <li class="flex items-start p-2 hover:bg-gray-50 rounded-lg transition-colors">
                         <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                         <span><strong>Modalidad:</strong> e-learning asíncrono con apoyo puntual (con reuniones)</span>
                     </li>
-                    <li class="flex items-start">
+                    <li class="flex items-start p-2 hover:bg-gray-50 rounded-lg transition-colors">
                         <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                         <span><strong>Sesiones síncronas:</strong> 2 sesiones (inicio y cierre del curso)</span>
                     </li>
-                    <li class="flex items-start">
+                    <li class="flex items-start p-2 hover:bg-gray-50 rounded-lg transition-colors">
                         <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                         <span><strong>Entorno virtual de aprendizaje:</strong> Moodle</span>
                     </li>
-                    <li class="flex items-start">
+                    <li class="flex items-start p-2 hover:bg-gray-50 rounded-lg transition-colors">
                         <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
                         <span><strong>Herramientas complementarias:</strong> Genially, Padlet, foros del LMS, herramientas de IA generativa</span>
                     </li>
-                    <li class="flex items-start">
+                    <li class="flex items-start p-2 hover:bg-gray-50 rounded-lg transition-colors">
                         <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         <span><strong>Tipo de evaluación:</strong> continua y basada en proyectos</span>
                     </li>
-                    <li class="flex items-start">
+                    <li class="flex items-start p-2 hover:bg-gray-50 rounded-lg transition-colors">
                         <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
                         <span><strong>Producto final:</strong> diseño de una e-actividad aplicable al aula</span>
                     </li>
                 </ul>
-                <div class="mt-6 bg-blue-50 p-4 rounded-lg text-blue-900 border border-blue-100">
+                <div class="mt-6 bg-blue-50 p-4 rounded-lg text-blue-900 border border-blue-100 hover:bg-blue-100 transition-colors cursor-default">
                     <p class="m-0 font-medium">El plan es ofrecer una formación flexible y compatible con las tareas cotidianas de los profesores, incluso para que puedan aplicar las enseñanzas directamente en su trabajo .</p>
                 </div>
             </section>
-
 
             <!-- 1. El Contexto de Aprendizaje -->
             <section class="mb-12">
@@ -128,17 +140,15 @@
                 <p>El proyecto consiste en un curso de formación continua 100% en línea (e-learning) orientado a la capacitación profesional docente. La idea es utilizar las TICs para abrir nuevas oportunidades educativas, con diseños que superen la "distancia social" inherente a estos entornos (Sangrà, 2020).</p>
                 <p>Se adoptará el modelo pedagógico centrado en el alumno, donde el estudiante recibe acceso directo a múltiples fuentes de información, procesa activamente los contenidos y el profesor actúa como un facilitador (Hirumi, 2002). Además, se usará el modelo DIAC propuesto por Coomey y Stephenson (2001), donde el éxito del aprendizaje en línea se mide con cuatro elementos: Diálogo, Implicación, Apoyo y Control.</p>
                 
-                <div class="my-6 p-6 bg-gray-100 rounded-xl border-l-4 border-indigo-500">
+                <div class="my-6 p-6 bg-gray-100 rounded-xl border-l-4 border-indigo-500 hover:shadow-md transition-shadow">
                     <p><strong>La problemática es la siguiente:</strong><br>
                     Los profesores de secundaria tienen poca práctica usando la tecnología para hacer las clases más participativas, lo que impide modernizar la enseñanza y mejorar cómo aprenden los alumnos.</p>
                     <p class="mt-3 mb-0"><strong>La solución:</strong> diseñar una experiencia cuyos resultados se puedan aplicar directamente en el contexto del aula.</p>
                 </div>
 
-
                 <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-800">Grupo Destinatario:</h3>
                 <p>El público objetivo son docentes de secundaria; como son adultos profesionales, la formación no puede ser puramente teórica, sino que debe basarse en «contextos auténticos» (Bruner, 1973). Necesitan tener autonomía, trabajar sobre las dificultades reales que viven en sus aulas y aprender cosas que puedan poner en práctica de inmediato..</p>
             </section>
-
 
             <!-- Estructura -->
             <section class="mb-12">
@@ -146,28 +156,23 @@
                 <p>La acción formativa se organiza en cuatro módulos progresivos:</p>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow cursor-default hover:-translate-y-1 transform duration-200">
-                        <h4 class="text-lg font-bold text-indigo-700 mb-2">Módulo 1: Metodologías activas en contextos digitales</h4>
-                        <p class="text-gray-600 m-0">Introducción a los enfoques pedagógicos actuales y su relación con las TIC.</p>
+                    <div class="interactive-card bg-white p-6 rounded-xl shadow-sm border border-gray-100 cursor-default">
+                        <p class="text-gray-800 m-0"><strong class="text-indigo-700 block mb-1">Módulo 1: Metodologías activas en contextos digitales.</strong> Introducción a los enfoques pedagógicos actuales y su relación con las TIC.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow cursor-default hover:-translate-y-1 transform duration-200">
-                        <h4 class="text-lg font-bold text-indigo-700 mb-2">Módulo 2: Diseño de e-actividades</h4>
-                        <p class="text-gray-600 m-0">Principios de diseño instruccional y creación de actividades significativas.</p>
+                    <div class="interactive-card bg-white p-6 rounded-xl shadow-sm border border-gray-100 cursor-default">
+                        <p class="text-gray-800 m-0"><strong class="text-indigo-700 block mb-1">Módulo 2: Diseño de e-actividades.</strong> Principios de diseño instruccional y creación de actividades significativas.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow cursor-default hover:-translate-y-1 transform duration-200">
-                        <h4 class="text-lg font-bold text-indigo-700 mb-2">Módulo 3: Herramientas digitales para la innovación educativa</h4>
-                        <p class="text-gray-600 m-0">Uso práctico de herramientas digitales y recursos interactivos.</p>
+                    <div class="interactive-card bg-white p-6 rounded-xl shadow-sm border border-gray-100 cursor-default">
+                        <p class="text-gray-800 m-0"><strong class="text-indigo-700 block mb-1">Módulo 3: Herramientas digitales para la innovación educativa.</strong> Uso práctico de herramientas digitales y recursos interactivos.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow cursor-default hover:-translate-y-1 transform duration-200">
-                        <h4 class="text-lg font-bold text-indigo-700 mb-2">Módulo 4: Proyecto final aplicado al aula</h4>
-                        <p class="text-gray-600 m-0">Diseño de una e-actividad completa transferible al contexto profesional.</p>
+                    <div class="interactive-card bg-white p-6 rounded-xl shadow-sm border border-gray-100 cursor-default">
+                        <p class="text-gray-800 m-0"><strong class="text-indigo-700 block mb-1">Módulo 4: Proyecto final aplicado al aula.</strong> Diseño de una e-actividad completa transferible al contexto profesional.</p>
                     </div>
                 </div>
                 
                 <p>Con esta secuencia se podrá avanzar desde la comprensión conceptual hasta la aplicación práctica, y también alineándose con un enfoque de aprendizaje progresivo y significativo.</p>
             </section>
         </div>
-
 
         <!-- TAB 2: Modelo Tecnopedagógico -->
         <div id="tab-modelo" class="tab-content hidden animate-fade-in">
@@ -188,28 +193,28 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200 text-gray-600">
-                            <tr class="hover:bg-gray-50 bg-blue-50/30">
+                            <tr class="hover:bg-blue-50 transition-colors bg-blue-50/30">
                                 <td class="px-6 py-4 font-bold text-gray-900">ADDIE</td>
                                 <td class="px-6 py-4">Sistémico y estructurado</td>
                                 <td class="px-6 py-4">Flexible, adaptable y completo</td>
                                 <td class="px-6 py-4">Puede resultar rígido si no se adapta</td>
                                 <td class="px-6 py-4 font-semibold text-blue-700">Alta</td>
                             </tr>
-                            <tr class="hover:bg-gray-50">
+                            <tr class="hover:bg-gray-50 transition-colors">
                                 <td class="px-6 py-4 font-bold text-gray-900">ASSURE</td>
                                 <td class="px-6 py-4">Centrado en medios y aula</td>
                                 <td class="px-6 py-4">Fácil de aplicar en contextos concretos</td>
                                 <td class="px-6 py-4">Menor visión global del proceso</td>
                                 <td class="px-6 py-4">Media</td>
                             </tr>
-                            <tr class="hover:bg-gray-50">
+                            <tr class="hover:bg-gray-50 transition-colors">
                                 <td class="px-6 py-4 font-bold text-gray-900">SOLE</td>
                                 <td class="px-6 py-4">Aprendizaje autónomo</td>
                                 <td class="px-6 py-4">Fomenta autonomía y exploración</td>
                                 <td class="px-6 py-4">Escaso control pedagógico</td>
                                 <td class="px-6 py-4">Baja</td>
                             </tr>
-                            <tr class="hover:bg-gray-50">
+                            <tr class="hover:bg-gray-50 transition-colors">
                                 <td class="px-6 py-4 font-bold text-gray-900">4C/ID</td>
                                 <td class="px-6 py-4">Desarrollo de competencias complejas</td>
                                 <td class="px-6 py-4">Muy potente en aprendizaje profundo</td>
@@ -221,16 +226,13 @@
                 </div>
                 <p>A partir de este análisis comparativo, se selecciona el modelo ADDIE por su capacidad de estructurar de forma coherente todo el proceso formativo, adaptándose a contextos de formación online y permitiendo integrar otros enfoques constructivistas como el modelo EAC.</p>
 
-
                 <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-800">2.2. Justificación de la elección del modelo ADDIE </h3>
                 <p>En la documentación académica consultada, hemos constatado que, históricamente, los modelos de Diseño Instruccional (DI) estaban basados en teorías conductistas, pero la evolución natural de la disciplina, impulsada por la integración de las TIC, ha dado lugar al concepto de Diseño Tecnopedagógico (DTP) (Coll, Onrubia y Mauri, 2007) que hace que el diseño tecnológico resulte prácticamente indisociable del diseño pedagógico.</p>
                 <p>Se elige ADDIE porque es sistémico, versátil y proporciona un marco conceptual genérico ("paraguas") que sirve para ilustrar la interconexión de todo el proceso de desarrollo de las intervenciones educativas (Molenda, 2003). ADDIE permite un proceso interactivo donde el producto final de cada fase es el producto inicial de la siguiente y da la continuidad y retroalimentación que exige el objetivo final del curso.</p>
                 <p>Para asegurar que ADDIE no se aplique de una forma mecánica o prescriptiva, se fusiona con el modelo EAC (Entornos de Aprendizaje Constructivista). El modelo EAC de Jonassen (1999) enfatiza el papel del aprendiz en la construcción del conocimiento mediante el enfoque de "aprender haciendo". La meta es diseñar entornos que comprometan al alumno en la elaboración del conocimiento, utilizando un problema, pregunta o proyecto como núcleo central. De este modo, la tecnología no es un fin, sino una herramienta cognitiva y de colaboración al servicio del constructivismo y para nuestro alumnado objetivo, que son a su vez docentes de secundaria, se crean las sinergias necesarias durante la acción formativa para conseguir el objetivo final, que es aprender a crear e-actividades más participativas utilizando las nuevas tecnologías aprendidas.</p>
 
-
                 <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-800">2.3. Proceso de descarte de los otros modelos</h3>
                 <p>Otros modelos que hemos considerado por su adecuación media al contexto (pero descartados finalmente) son: el modelo ASSURE, aunque útil para el diseño de sesiones concretas, presenta limitaciones en la planificación global de programas formativos completos tan específicos como en nuestro. Por su parte, el modelo SOLE prioriza la autonomía del alumno (docentes adultos), pero no garantiza el acompañamiento necesario en procesos formativos estructurados. Finalmente, el modelo 4C/ID, aunque altamente eficaz para el desarrollo de competencias complejas, implica un nivel de complejidad en su implementación que no se ajusta a los objetivos y recursos disponibles en esta propuesta.</p>
-
 
                 <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-800">2.4. Ubicación en la cuadrícula de paradigmas pedagógicos de  Coomey y Stephenson (2001)</h3>
                 <p>La propuesta formativa se sitúa en el cuadrante Noreste (NE) caracterizado por un alto grado de control por parte del alumno y una fuerte orientación a la actividad, lo que implica un enfoque centrado en el aprendizaje activo y autónomo.</p>
@@ -238,170 +240,51 @@
             </section>
         </div>
 
-
         <!-- TAB 3: Diseño (ADDIE) -->
         <div id="tab-diseno" class="tab-content hidden animate-fade-in">
             <section class="mb-12">
                 <h2 class="text-3xl font-bold mb-6 text-gray-900">3. Diseño de la Acción Formativa: Proyecto Educativo basado en ADDIE y EAC</h2>
                 <p class="mb-6">El proyecto formativo se estructura exhaustivamente a través de las cinco fases de la arquitectura ADDIE, integrando en ellas los seis elementos del entorno constructivista de Jonassen (1999). <strong>Haz clic en cada fase para explorar los detalles:</strong></p>
 
-
                 <!-- Accordion: FASE 1 -->
-                <div class="mb-4 border border-blue-200 rounded-xl overflow-hidden shadow-sm">
+                <div class="mb-4 border border-blue-200 rounded-xl overflow-hidden shadow-sm interactive-card">
                     <button onclick="toggleAccordion('fase1')" class="w-full text-left p-5 font-bold bg-blue-50 text-blue-800 flex justify-between items-center hover:bg-blue-100 transition-colors focus:outline-none">
                         <span class="text-xl">FASE 1: ANÁLISIS (Analysis)</span>
                         <svg id="icon-fase1" class="w-6 h-6 accordion-icon text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div id="fase1" class="hidden p-6 bg-white border-t border-blue-100">
-                        <p>La fase de análisis constituye el punto de partida del diseño tecnopedagógico, orientado a identificar las necesidades formativas, las características del alumnado y las condiciones del contexto en el que se desarrollará la acción formativa (Miles, 2003).</p>
-                        
-                        <h4 class="text-lg font-semibold mt-6 mb-2">Análisis de necesidades formativas</h4>
-                        <p>La identificación de necesidades se realiza mediante un diagnóstico inicial que combina diferentes instrumentos:</p>
-                        <ul class="list-disc list-inside mb-4 pl-4 space-y-1">
-                            <li>Cuestionario de competencia digital docente basado en el marco DigCompEdu</li>
-                            <li>Autoevaluación del uso de metodologías activas en el aula</li>
-                            <li>Análisis de prácticas docentes habituales</li>
-                        </ul>
-                        <p>Este diagnóstico permite constatar que, aunque existe un uso creciente de herramientas digitales, este se sitúa mayoritariamente en un nivel instrumental, sin una integración pedagógica significativa en el diseño de actividades de aprendizaje.</p>
-
-
-                        <h4 class="text-lg font-semibold mt-6 mb-2">Análisis del alumnado</h4>
-                        <p>Siguiendo a Heinich, Molenda, Russell y Smaldino (2003), se analizan las características de los estudiantes para adaptar el diseño formativo.</p>
-                        <p>El grupo destinatario está formado por docentes de educación secundaria en activo, con las siguientes características:</p>
-                        <ul class="list-disc list-inside mb-4 pl-4 space-y-1">
-                            <li>Experiencia profesional consolidada</li>
-                            <li>Necesidad de aplicabilidad inmediata de los aprendizajes</li>
-                            <li>Nivel heterogéneo de competencia digital</li>
-                        </ul>
-                        <p>En este sentido, pueden identificarse tres perfiles:</p>
-                        <ul class="list-disc list-inside mb-4 pl-4 space-y-1">
-                            <li><strong>Nivel básico:</strong> uso limitado de herramientas digitales</li>
-                            <li><strong>Nivel intermedio:</strong> uso frecuente de TIC sin integración metodológica</li>
-                            <li><strong>Nivel avanzado:</strong> incorporación puntual de metodologías activas</li>
-                        </ul>
-                        <p>De acuerdo con Bruner (1973), este perfil adulto requiere contextos de aprendizaje auténticos, centrados en problemas reales y orientados a la acción.</p>
-
-
-                        <h4 class="text-lg font-semibold mt-6 mb-2">Identificación del problema (Enfoque EAC)</h4>
-                        <p>Desde la perspectiva del modelo de Entornos de Aprendizaje Constructivista de Jonassen (1999), el proceso formativo se articula en torno a un problema central que actúa como eje del aprendizaje:</p>
-                        <p class="italic bg-gray-50 p-4 border border-gray-200 rounded-md">Dificultad del profesorado de educación secundaria para diseñar e implementar e-actividades basadas en metodologías activas, integrando las TIC de forma pedagógicamente significativa.</p>
-                        <p>Este planteamiento conecta con la necesidad de superar modelos transmisivos y avanzar hacia enfoques centrados en el alumno, donde el docente actúa como facilitador del aprendizaje (Hirumi, 2002).</p>
-
-
-                        <h4 class="text-lg font-semibold mt-6 mb-2">Análisis del contexto</h4>
-                        <p>El contexto de aprendizaje se sitúa en un entorno e-learning, que, como señala Sangrà (2020), debe diseñarse para superar la distancia social propia de la educación no presencial.</p>
-                        <p>El entorno virtual será Moodle, complementado con herramientas digitales como Genially o Padlet, lo que permite estructurar un ecosistema de aprendizaje flexible y accesible.</p>
-                        <p>Siguiendo a Jonassen (1999) y los modelos contextuales de Tessmer y Richey, se identifican las siguientes variables:</p>
-                        <ul class="list-disc list-inside mb-4 pl-4 space-y-1">
-                            <li><strong>Contexto tecnológico:</strong> acceso a LMS y herramientas digitales</li>
-                            <li><strong>Contexto organizativo:</strong> compatibilidad con la actividad docente</li>
-                            <li><strong>Contexto sociocultural:</strong> diversidad de realidades educativas</li>
-                        </ul>
-                        <p>Asimismo, se reconocen las siguientes limitaciones:</p>
-                        <ul class="list-disc list-inside mb-4 pl-4 space-y-1">
-                            <li>Disponibilidad de tiempo del profesorado</li>
-                            <li>Diferencias en competencia digital</li>
-                            <li>Variabilidad en los recursos tecnológicos de los centros</li>
-                        </ul>
-
-
-                        <h4 class="text-lg font-semibold mt-6 mb-2">Síntesis de la fase de análisis</h4>
-                        <p>Los resultados de esta fase permiten fundamentar un diseño formativo centrado en el aprendizaje aplicado, la resolución de problemas y la transferencia directa al aula, en coherencia con el modelo DIAC de Coomey y Stephenson (2001), que enfatiza el diálogo, la implicación, el apoyo y el control en entornos de aprendizaje en línea.</p>
+                    <div id="fase1" class="hidden p-6 bg-white border-t border-blue-100 text-gray-700">
+                        <p class="mb-4">La fase de análisis constituye el punto de partida del diseño tecnopedagógico, orientado a identificar necesidades formativas, características del alumnado y condiciones del contexto (Miles, 2003).</p>
+                        <p class="mb-4">La identificación de necesidades se realiza mediante un diagnóstico inicial que incluye un cuestionario basado en el marco DigCompEdu, junto con procesos de autoevaluación y análisis de la práctica docente. Los resultados evidencian un uso frecuente de TIC a nivel instrumental, pero con escasa integración pedagógica en el diseño de actividades.</p>
+                        <p class="mb-4">Siguiendo a Heinich et al. (2003), el alumnado está compuesto por docentes de secundaria en activo con experiencia profesional y necesidad de aplicabilidad inmediata, presentando un nivel de competencia digital heterogéneo (básico, intermedio y avanzado). En línea con Bruner (1973), esto requiere contextos de aprendizaje auténticos, centrados en problemas reales.</p>
+                        <p class="mb-4">Desde el enfoque de Entornos de Aprendizaje Constructivista de Jonassen (1999), el proceso se articula en torno a un problema central: la dificultad del profesorado para diseñar e-actividades basadas en metodologías activas integrando TIC de forma pedagógica. Este planteamiento conecta con modelos centrados en el alumno, donde el docente actúa como facilitador (Hirumi, 2002).</p>
+                        <p class="mb-4">El contexto se sitúa en un entorno e-learning apoyado en Moodle que, como señala Sangrà (2020), requiere estrategias que favorezcan la interacción y reduzcan la distancia social. Se consideran como condicionantes la limitación temporal del profesorado, la diversidad en competencia digital y la variabilidad de recursos tecnológicos.</p>
+                        <p>En síntesis, este análisis orienta hacia un diseño formativo aplicado, centrado en la transferencia al aula y coherente con el modelo DIAC de Coomey y Stephenson (2001), basado en diálogo, implicación, apoyo y control.</p>
                     </div>
                 </div>
 
-
                 <!-- Accordion: FASE 2 -->
-                <div class="mb-4 border border-indigo-200 rounded-xl overflow-hidden shadow-sm">
+                <div class="mb-4 border border-indigo-200 rounded-xl overflow-hidden shadow-sm interactive-card">
                     <button onclick="toggleAccordion('fase2')" class="w-full text-left p-5 font-bold bg-indigo-50 text-indigo-800 flex justify-between items-center hover:bg-indigo-100 transition-colors focus:outline-none">
                         <span class="text-xl">FASE 2: DISEÑO (Design)</span>
                         <svg id="icon-fase2" class="w-6 h-6 accordion-icon text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div id="fase2" class="hidden p-6 bg-white border-t border-indigo-100">
-                        <p>La fase de diseño define la estructura pedagógica de la acción formativa, estableciendo los objetivos, las actividades y la estrategia de evaluación, en coherencia con los principios del diseño instruccional (Heinich et al., 2003).</p>
-                        
-                        <h4 class="text-lg font-semibold mt-6 mb-2">Definición de objetivos de aprendizaje</h4>
-                        <p>Siguiendo criterios de formulación de objetivos operativos, se establecen los siguientes:</p>
-                        <ul class="list-disc list-inside mb-4 pl-4 space-y-1">
-                            <li>Diseñar e-actividades basadas en metodologías activas aplicables al aula de secundaria</li>
-                            <li>Integrar herramientas TIC con una finalidad pedagógica clara</li>
-                            <li>Aplicar estrategias de evaluación formativa en entornos digitales</li>
-                        </ul>
-                        <p>Estos objetivos responden a la necesidad de desarrollar competencias aplicadas y transferibles al contexto profesional.</p>
-
-
-                        <h4 class="text-lg font-semibold mt-6 mb-2">Resultados de aprendizaje</h4>
-                        <p>Al finalizar la acción formativa, los participantes serán capaces de:</p>
-                        <ul class="list-disc list-inside mb-4 pl-4 space-y-1">
-                            <li>Analizar críticamente prácticas docentes tradicionales</li>
-                            <li>Diseñar experiencias de aprendizaje digital centradas en el alumno</li>
-                            <li>Implementar metodologías activas mediadas por TIC</li>
-                            <li>Evaluar el aprendizaje mediante enfoques formativos y herramientas digitales</li>
-                        </ul>
-
-
-                        <h4 class="text-lg font-semibold mt-6 mb-2">Diseño de e-actividades</h4>
-                        <p>De acuerdo con Maina (2020), las e-actividades constituyen el núcleo del aprendizaje en entornos digitales, debiendo estructurarse en torno a tareas significativas y contextualizadas.</p>
-                        <p>En este sentido, se plantean las siguientes actividades:</p>
-                        <ul class="list-disc list-inside mb-4 pl-4 space-y-1">
-                            <li><strong>Módulo 1:</strong> Foro de debate guiado sobre metodologías activas</li>
-                            <li><strong>Módulo 2:</strong> Diseño de un prototipo de e-actividad</li>
-                            <li><strong>Módulo 3:</strong> Creación de un recurso digital interactivo (Genially u otros)</li>
-                            <li><strong>Módulo 4:</strong> Desarrollo del proyecto final aplicado al aula</li>
-                        </ul>
-                        <p>Cada actividad incluye contexto, instrucciones claras y criterios de evaluación, favoreciendo la implicación activa del estudiante.</p>
-
-
-                        <h4 class="text-lg font-semibold mt-6 mb-2">Integración del modelo EAC</h4>
-                        <p>El diseño se fundamenta en los principios del modelo de Jonassen (1999), incorporando sus elementos clave:</p>
-                        <ul class="list-disc list-inside mb-4 pl-4 space-y-1">
-                            <li><strong>Problema central:</strong> diseño de una e-actividad real</li>
-                            <li><strong>Casos relacionados:</strong> análisis de buenas prácticas docentes</li>
-                            <li><strong>Fuentes de información:</strong> recursos digitales estructurados</li>
-                            <li><strong>Herramientas cognitivas:</strong> uso de TIC para apoyar el pensamiento</li>
-                            <li><strong>Colaboración:</strong> interacción mediante foros y actividades compartidas</li>
-                            <li><strong>Reflexión:</strong> uso de e-portfolios y procesos de autoevaluación</li>
-                        </ul>
-                        <p>Este enfoque responde al principio de “aprender haciendo”, característico de los entornos constructivistas.</p>
-
-
-                        <h4 class="text-lg font-semibold mt-6 mb-2">Secuencia metodológica</h4>
-                        <p>La acción formativa se organiza en una secuencia progresiva:</p>
-                        <ol class="list-decimal list-inside mb-4 pl-4 space-y-1">
-                            <li>Activación de conocimientos previos</li>
-                            <li>Presentación de contenidos</li>
-                            <li>Aplicación práctica</li>
-                            <li>Reflexión y transferencia</li>
-                        </ol>
-                        <p>Esta estructura favorece el aprendizaje significativo y la consolidación de competencias.</p>
-
-
-                        <h4 class="text-lg font-semibold mt-6 mb-2">Estrategia de evaluación</h4>
-                        <p>Siguiendo a Díaz y Barroso (2014) y Cabrera y Fernández-Ferrer (2020), se plantea una evaluación continua y formativa integrada en el proceso de aprendizaje.</p>
-                        <p>Se utilizarán:</p>
-                        <ul class="list-disc list-inside mb-4 pl-4 space-y-1">
-                            <li>e-portfolio como herramienta de seguimiento</li>
-                            <li>Evaluación del proyecto final mediante rúbrica</li>
-                            <li>Procesos de autoevaluación y coevaluación</li>
-                        </ul>
-                        <p>Los criterios de evaluación incluyen:</p>
-                        <ul class="list-disc list-inside mb-4 pl-4 space-y-1">
-                            <li>Coherencia pedagógica</li>
-                            <li>Integración significativa de las TIC</li>
-                            <li>Aplicabilidad al contexto real</li>
-                            <li>Capacidad de innovación metodológica</li>
-                        </ul>
+                    <div id="fase2" class="hidden p-6 bg-white border-t border-indigo-100 text-gray-700">
+                        <p class="mb-4">La fase de diseño establece la estructura pedagógica de la acción formativa, definiendo objetivos, actividades y evaluación en coherencia con los principios del diseño instruccional (Heinich et al., 2003).</p>
+                        <p class="mb-4">Los objetivos se formulan en términos operativos: diseñar e-actividades basadas en metodologías activas, integrar TIC con finalidad pedagógica y aplicar estrategias de evaluación formativa. En consecuencia, los participantes serán capaces de diseñar experiencias digitales centradas en el alumno, aplicar metodologías activas mediadas por TIC y evaluar mediante enfoques formativos.</p>
+                        <p class="mb-4">Siguiendo a Maina (2020), las e-actividades se configuran como núcleo del aprendizaje, organizándose de forma progresiva: debate guiado (Módulo 1), diseño de actividad (Módulo 2), creación de recurso digital (Módulo 3) y desarrollo del proyecto final (Módulo 4). Todas ellas incorporan contexto, consignas claras y criterios de evaluación.</p>
+                        <p class="mb-4">El diseño integra los principios del modelo EAC de Jonassen (1999), articulando el aprendizaje en torno a un problema central, apoyado en casos reales, fuentes de información estructuradas y uso de TIC como herramientas cognitivas, favoreciendo además la colaboración y la reflexión mediante foros y e-portfolios.</p>
+                        <p class="mb-4">La secuencia metodológica sigue una lógica progresiva de activación, adquisición, aplicación y reflexión, facilitando el aprendizaje significativo y la transferencia.</p>
+                        <p>Finalmente, la evaluación se plantea como continua y formativa (Díaz y Barroso, 2014; Cabrera y Fernández-Ferrer, 2020), basada en e-portfolio, proyecto final con rúbrica y procesos de auto y coevaluación. Los criterios se centran en la coherencia pedagógica, la integración significativa de TIC y la aplicabilidad al contexto real..</p>
                     </div>
                 </div>
 
-
                 <!-- Accordion: FASE 3 -->
-                <div class="mb-4 border border-teal-200 rounded-xl overflow-hidden shadow-sm">
+                <div class="mb-4 border border-teal-200 rounded-xl overflow-hidden shadow-sm interactive-card">
                     <button onclick="toggleAccordion('fase3')" class="w-full text-left p-5 font-bold bg-teal-50 text-teal-800 flex justify-between items-center hover:bg-teal-100 transition-colors focus:outline-none">
                         <span class="text-xl">FASE 3: DESARROLLO (Development)</span>
                         <svg id="icon-fase3" class="w-6 h-6 accordion-icon text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div id="fase3" class="hidden p-6 bg-white border-t border-teal-100">
+                    <div id="fase3" class="hidden p-6 bg-white border-t border-teal-100 text-gray-700">
                         <p>En esta fase creativa y de producción se elaboran y seleccionan todos los recursos técnicos y materiales instruccionales previos al inicio del curso (Dick, Carey & Carey, 2001).</p>
                         <ul class="list-none space-y-4 mt-4">
                             <li><strong>Desarrollo de herramientas cognitivas y de colaboración (enfoque EAC):</strong> Como cuarta y quinta etapa del EAC, se implementarán en el LMS las herramientas informáticas que apoyarán la resolución del proyecto (herramientas cognitivas) y los foros o wikis que generarán un ambiente de conversación (herramientas de colaboración y conversación) (Jonassen, 1999). </li>
@@ -412,14 +295,13 @@
                     </div>
                 </div>
 
-
                 <!-- Accordion: FASE 4 -->
-                <div class="mb-4 border border-amber-200 rounded-xl overflow-hidden shadow-sm">
+                <div class="mb-4 border border-amber-200 rounded-xl overflow-hidden shadow-sm interactive-card">
                     <button onclick="toggleAccordion('fase4')" class="w-full text-left p-5 font-bold bg-amber-50 text-amber-800 flex justify-between items-center hover:bg-amber-100 transition-colors focus:outline-none">
                         <span class="text-xl">FASE 4: IMPLEMENTACIÓN (Implementation)</span>
                         <svg id="icon-fase4" class="w-6 h-6 accordion-icon text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div id="fase4" class="hidden p-6 bg-white border-t border-amber-100">
+                    <div id="fase4" class="hidden p-6 bg-white border-t border-amber-100 text-gray-700">
                         <p>En esta fase se ejecuta la docencia interactuando directamente con los docentes-alumnos en la plataforma virtual. El elemento clave en esta fase es el Apoyo contextual y social de la sexta etapa del modelo EAC (Jonassen, 1999).</p>
                         <ul class="list-none space-y-4 mt-4">
                             <li>
@@ -437,14 +319,13 @@
                     </div>
                 </div>
 
-
                 <!-- Accordion: FASE 5 -->
-                <div class="mb-4 border border-rose-200 rounded-xl overflow-hidden shadow-sm">
+                <div class="mb-4 border border-rose-200 rounded-xl overflow-hidden shadow-sm interactive-card">
                     <button onclick="toggleAccordion('fase5')" class="w-full text-left p-5 font-bold bg-rose-50 text-rose-800 flex justify-between items-center hover:bg-rose-100 transition-colors focus:outline-none">
                         <span class="text-xl">FASE 5: EVALUACIÓN (Evaluation)</span>
                         <svg id="icon-fase5" class="w-6 h-6 accordion-icon text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div id="fase5" class="hidden p-6 bg-white border-t border-rose-100">
+                    <div id="fase5" class="hidden p-6 bg-white border-t border-rose-100 text-gray-700">
                         <p>En la última fase, la evaluación en el diseño instruccional sistémico no es una etapa aislada, sino un proceso concurrente que nutre de información a todas las demás fases para la mejora continua (Dick, Carey y Carey, 2001).</p>
                         <ul class="list-none space-y-4 mt-4">
                             <li><strong>Evaluación formativa (durante el proceso):</strong> Se llevará a cabo durante la fase de desarrollo e implementación. Recogiendo datos de los propios estudiantes y analizando el proceso para realizar ajustes sobre la marcha (ej. modificar tiempos de entrega si la carga es excesiva) (Dick et al., 2001). El docente evaluará el progreso de las e-actividades de los participantes y proporcionará retroalimentación continua.</li>
@@ -452,8 +333,7 @@
                             <li><strong>Autorregulación continua:</strong> A partir de los resultados de las evaluaciones y el nivel de satisfacción, se analizará la discrepancia entre los resultados planeados y los obtenidos (Heinich et al., 1999). Los fallos detectados en los medios, en los métodos o en los materiales servirán para retroalimentar el sistema y reformular el diseño en su próxima iteración, cerrando el ciclo sistémico de mejora continua (Gustafson y Molenda, 1997).</li>
                         </ul>
 
-
-                        <div class="mt-8 bg-rose-50 p-6 rounded-xl border border-rose-200">
+                        <div class="mt-8 bg-rose-50 p-6 rounded-xl border border-rose-200 hover:shadow-md transition-shadow">
                             <h4 class="text-xl font-bold text-rose-800 mb-4">Sistema de evaluación</h4>
                             <p class="mb-3">La evaluación se divide de la siguiente manera:</p>
                             <ul class="list-disc list-inside mb-4 pl-4 text-gray-700">
@@ -470,43 +350,41 @@
             </section>
         </div>
 
-
         <!-- TAB 4: Bibliografía -->
         <div id="tab-bibliografia" class="tab-content hidden animate-fade-in">
             <section class="mb-12">
                 <h2 class="text-3xl font-bold mb-6 text-gray-900">Bibliografía</h2>
                 <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+                    <p class="text-sm text-gray-500 mb-4 italic">Pasa el cursor por encima de cada referencia para resaltarla.</p>
                     <div class="biblio-list text-sm text-gray-600">
-                        <p>Ashton, S., Roberts, T., y Teles, L. (1999). Investigation the role of the instructor in collaborative online environments. Sesión de póster presentada en la Conferencia CSCL 99, Stanford University, CA.</p>
-                        <p>Bonk, C. J., Reaves Kirkley, J., Hara, N., y Paz Dennen, V. (2001). Finding the instructor in post-secondary online learning: pedagogical, social, managerial, and technological locations. En J. Stephenson (Ed.), Teaching and Learning Online: Pedagogies for New Technologies. Londres: Kogan Page.</p>
-                        <p>Brown, H. D. (2004). Language Assessment: Principles and Classroom Practices. Nueva York: Longman.</p>
-                        <p>Bruner, J. S. (1973). Beyond the information given: Studies in the psychology of knowing. Nueva York: Norton.</p>
-                        <p>Cabrera, N., y Fernández-Ferrer, M. (2020). Claves para una evaluación en línea. En A. Sangrà (Coord.), Decálogo para la mejora de la docencia online. Propuestas para educar en contextos presenciales discontinuos (pp. 63-80). Barcelona: Editorial UOC.</p>
-                        <p>Coll, C., Onrubia, J., y Mauri, T. (2007). Los entornos virtuales de aprendizaje basados en el análisis de casos y la resolución de problemas. España: Morata.</p>
-                        <p>Coomey, M., y Stephenson, J. (2001). Online learning: it is all about dialogue, involvement, support and control-according to research. En J. Stephenson (Ed.), Teaching and Learning Online: Pedagogies for New Technologies. Londres: Kogan Page.</p>
-                        <p>Díaz, F., y Barroso, R. (2014). Diseño y Validación de una propuesta de evaluación auténtica de competencias en un programa de formación de docentes de educación básica en México. Perspectiva Educacional: Formación de profesores, 53(1), 36-56.</p>
-                        <p>Dick, W., Carey, L., y Carey, J. (2001). The systematic design of instruction (5th ed.). Nueva York: Longman.</p>
-                        <p>Guasch, T., y Espasa, A. (2020). Menos es más: menos correcciones y más feedback para aprender. En A. Sangrà (Coord.), Decálogo para la mejora de la docencia online. Propuestas para educar en contextos presenciales discontinuos (pp. 151-168). Barcelona: Editorial UOC.</p>
-                        <p>Gustafson, K. L., y Branch, R. M. (2002). Survey of instructional development models (4th ed.). Syracuse, NY: ERIC Clearinghouse on Information & Technology.</p>
-                        <p>Heinich, R., Molenda, M., Russell, J., y Smaldino, S. (1999). Instructional media and technologies for learning (6th ed.). Upper Saddle River, NJ: Merrill, Prentice-Hall.</p>
-                        <p>Hirumi, A. (2002). Student-Centered, Technology-Rich Learning Environments (SCenTRLE): Operationalizing Constructivist Approaches to Teaching and Learning. Journal of Technology and Teacher Education, 10(4), 497-537.</p>
-                        <p>Jonassen, D. H. (1999). Designing constructivist learning environments. En C. M. Reigeluth (Ed.), Instructional design theories and models: A new paradigm of instructional theory (Vol. 2, pp. 215-239). Mahwah, NJ: Lawrence Erlbaum Associates.</p>
-                        <p>Maina, M. (2020). E-actividades para un aprendizaje activo. En A. Sangrà (Coord.), Decálogo para la mejora de la docencia online. Propuestas para educar en contextos presenciales discontinuos (pp. 81-98). Barcelona: Editorial UOC.</p>
-                        <p>Mason, R. (1991). Moderating educational computer conferencing. DEOSNEWS, 1(19), 1-11.</p>
-                        <p>Miles, D. H. (2003). The 30-Second Encyclopedia of Learning and Performance: A Trainer’s Guide to Theory, Terminology, and Practice. Nueva York: AMACOM.</p>
-                        <p>Molenda, M. (2003). In search of the elusive ADDIE model. Performance Improvement, 42(5), 34-36.</p>
-                        <p>Piskurich, G. M. (2000). Rapid instructional design: Learning ID fast and right. San Francisco: Pfeiffer.</p>
-                        <p>Salmon, G. (2000). E-moderating: the key to teaching and learning online. Londres: Routledge Falmer.</p>
-                        <p>Sangrà, A. (Coord.) (2020). Decálogo para la mejora de la docencia online. Propuestas para educar en contextos presenciales discontinuos. Barcelona: Editorial UOC.</p>
-                        <p>Tripp, S. D., y Bichelmeyer, B. (1990). Rapid prototyping: An alternative instructional design strategy. Educational Technology Research and Development, 38(1), 31-44.</p>
+                        <p class="p-1 cursor-default">Ashton, S., Roberts, T., y Teles, L. (1999). Investigation the role of the instructor in collaborative online environments. Sesión de póster presentada en la Conferencia CSCL 99, Stanford University, CA.</p>
+                        <p class="p-1 cursor-default">Bonk, C. J., Reaves Kirkley, J., Hara, N., y Paz Dennen, V. (2001). Finding the instructor in post-secondary online learning: pedagogical, social, managerial, and technological locations. En J. Stephenson (Ed.), Teaching and Learning Online: Pedagogies for New Technologies. Londres: Kogan Page.</p>
+                        <p class="p-1 cursor-default">Brown, H. D. (2004). Language Assessment: Principles and Classroom Practices. Nueva York: Longman.</p>
+                        <p class="p-1 cursor-default">Bruner, J. S. (1973). Beyond the information given: Studies in the psychology of knowing. Nueva York: Norton.</p>
+                        <p class="p-1 cursor-default">Cabrera, N., y Fernández-Ferrer, M. (2020). Claves para una evaluación en línea. En A. Sangrà (Coord.), Decálogo para la mejora de la docencia online. Propuestas para educar en contextos presenciales discontinuos (pp. 63-80). Barcelona: Editorial UOC.</p>
+                        <p class="p-1 cursor-default">Coll, C., Onrubia, J., y Mauri, T. (2007). Los entornos virtuales de aprendizaje basados en el análisis de casos y la resolución de problemas. España: Morata.</p>
+                        <p class="p-1 cursor-default">Coomey, M., y Stephenson, J. (2001). Online learning: it is all about dialogue, involvement, support and control-according to research. En J. Stephenson (Ed.), Teaching and Learning Online: Pedagogies for New Technologies. Londres: Kogan Page.</p>
+                        <p class="p-1 cursor-default">Díaz, F., y Barroso, R. (2014). Diseño y Validación de una propuesta de evaluación auténtica de competencias en un programa de formación de docentes de educación básica en México. Perspectiva Educacional: Formación de profesores, 53(1), 36-56.</p>
+                        <p class="p-1 cursor-default">Dick, W., Carey, L., y Carey, J. (2001). The systematic design of instruction (5th ed.). Nueva York: Longman.</p>
+                        <p class="p-1 cursor-default">Guasch, T., y Espasa, A. (2020). Menos es más: menos correcciones y más feedback para aprender. En A. Sangrà (Coord.), Decálogo para la mejora de la docencia online. Propuestas para educar en contextos presenciales discontinuos (pp. 151-168). Barcelona: Editorial UOC.</p>
+                        <p class="p-1 cursor-default">Gustafson, K. L., y Branch, R. M. (2002). Survey of instructional development models (4th ed.). Syracuse, NY: ERIC Clearinghouse on Information & Technology.</p>
+                        <p class="p-1 cursor-default">Heinich, R., Molenda, M., Russell, J., y Smaldino, S. (1999). Instructional media and technologies for learning (6th ed.). Upper Saddle River, NJ: Merrill, Prentice-Hall.</p>
+                        <p class="p-1 cursor-default">Hirumi, A. (2002). Student-Centered, Technology-Rich Learning Environments (SCenTRLE): Operationalizing Constructivist Approaches to Teaching and Learning. Journal of Technology and Teacher Education, 10(4), 497-537.</p>
+                        <p class="p-1 cursor-default">Jonassen, D. H. (1999). Designing constructivist learning environments. En C. M. Reigeluth (Ed.), Instructional design theories and models: A new paradigm of instructional theory (Vol. 2, pp. 215-239). Mahwah, NJ: Lawrence Erlbaum Associates.</p>
+                        <p class="p-1 cursor-default">Maina, M. (2020). E-actividades para un aprendizaje activo. En A. Sangrà (Coord.), Decálogo para la mejora de la docencia online. Propuestas para educar en contextos presenciales discontinuos (pp. 81-98). Barcelona: Editorial UOC.</p>
+                        <p class="p-1 cursor-default">Mason, R. (1991). Moderating educational computer conferencing. DEOSNEWS, 1(19), 1-11.</p>
+                        <p class="p-1 cursor-default">Miles, D. H. (2003). The 30-Second Encyclopedia of Learning and Performance: A Trainer’s Guide to Theory, Terminology, and Practice. Nueva York: AMACOM.</p>
+                        <p class="p-1 cursor-default">Molenda, M. (2003). In search of the elusive ADDIE model. Performance Improvement, 42(5), 34-36.</p>
+                        <p class="p-1 cursor-default">Piskurich, G. M. (2000). Rapid instructional design: Learning ID fast and right. San Francisco: Pfeiffer.</p>
+                        <p class="p-1 cursor-default">Salmon, G. (2000). E-moderating: the key to teaching and learning online. Londres: Routledge Falmer.</p>
+                        <p class="p-1 cursor-default">Sangrà, A. (Coord.) (2020). Decálogo para la mejora de la docencia online. Propuestas para educar en contextos presenciales discontinuos. Barcelona: Editorial UOC.</p>
+                        <p class="p-1 cursor-default">Tripp, S. D., y Bichelmeyer, B. (1990). Rapid prototyping: An alternative instructional design strategy. Educational Technology Research and Development, 38(1), 31-44.</p>
                     </div>
                 </div>
             </section>
         </div>
 
-
     </main>
-
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-gray-400 py-8 text-center text-sm">
@@ -514,7 +392,6 @@
             <p>Documento de diseño instruccional del curso "Ctrl+Alt+Teach". Todos los derechos reservados.</p>
         </div>
     </footer>
-
 
     <!-- Interactivity Scripts -->
     <script>
@@ -527,7 +404,6 @@
                 tabContents[i].classList.add("hidden");
             }
 
-
             // Remove active classes from all tab buttons
             const tabBtns = document.getElementsByClassName("tab-btn");
             for (let i = 0; i < tabBtns.length; i++) {
@@ -535,14 +411,12 @@
                 tabBtns[i].classList.add("border-transparent", "text-gray-500");
             }
 
-
             // Show current tab and set active classes
             document.getElementById(tabName).classList.remove("hidden");
             document.getElementById(tabName).classList.add("block", "animate-fade-in");
             evt.currentTarget.classList.remove("border-transparent", "text-gray-500");
             evt.currentTarget.classList.add("border-blue-500", "text-blue-600", "active");
         }
-
 
         // Accordion toggle logic
         function toggleAccordion(id) {
